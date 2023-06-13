@@ -1,2 +1,5 @@
-# FlyBaseDownloads
-Package to download Flybase data in Python, easily and quickly.
+#FlyBaseDownload
+
+#The non-official FlyBase Python database
+
+#by Javiera Quiroz
