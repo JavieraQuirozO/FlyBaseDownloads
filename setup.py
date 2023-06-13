@@ -13,7 +13,10 @@ setup(
     version='1.0.0',
     license='MIT',
     author='Javiera Quiroz Olave',
+    url= 'https://github.com/JavieraQuirozO/FlyBaseDownloads',
     author_email='javiera.quiroz@biomedica.udec.cl',
+    long_description_content_type='text/x-rst',
+    long_description= 'The non-official FlyBaseDownload Packege',
     description='Package to download Flybase data in Python, easily and quickly.',
     packages=['FlyBaseDownloads'],
     classifiers=[
@@ -24,3 +27,4 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
 )
+
