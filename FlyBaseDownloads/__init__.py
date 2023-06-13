@@ -6,7 +6,7 @@ Created on Tue Jun 13 17:35:44 2023
 @author: javiera.quiroz
 """
 
-from FBD import FBD 
+from FlyBaseDownloads.FBD import FBD 
 
 db = FBD()
 
