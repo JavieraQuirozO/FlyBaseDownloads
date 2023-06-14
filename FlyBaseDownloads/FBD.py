@@ -57,10 +57,24 @@ class FBD():
             else:
                 print('Failed to download the file')
                 return []
+            
         
         
         
         def open_file(self, ruta_archivo, header):
+            def df_r(df):
+                if re.search(r"FB\w{9}", df.columns[0]):
+                    df_columns = pd.DataFrame(df.columns).T
+
+                    df.columns = range(len(df.columns))
+                    
+                    # Unir la fila de columnas con el resto del DataFrame
+                    df = pd.concat([df_columns, df], ignore_index=True, axis = 0)
+                
+                if re.search('## Finished', df.iloc[-1,0]):
+                    df = df.iloc[:-1, :]
+                
+                return df
             a = []
 
             if re.search(r'gz', ruta_archivo):
@@ -69,7 +83,7 @@ class FBD():
                     with gzip.open('../' + ruta_archivo, 'rt') as archivo:
                        df = pd.read_csv(archivo, sep='\t', header=header)
                        a.append(df)
-                    return a[0]
+                    return df_r(a[0])
                 
                 except: 
                     try:
@@ -88,7 +102,7 @@ class FBD():
                         df = df.dropna(axis='columns')
                       
       
-                        return df
+                        return df_r(df)
                     except:
                         print('Failed to download the file') 
             
