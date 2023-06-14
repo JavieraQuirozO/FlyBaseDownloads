@@ -10,11 +10,11 @@ In order to simplify the download of FlyBase files, the names have been kept as 
 
 1. Install the library using the pip command.
 
-    pip install FlyBaseDownloads
+    > pip install FlyBaseDownloads
 
 2. Import the library into your file.
 
-    import FlyBaseDownloads as FBD
+    > import FlyBaseDownloads as FBD
 
 3. Access the different classes of the library described below.
 
