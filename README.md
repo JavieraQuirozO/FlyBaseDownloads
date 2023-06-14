@@ -10,11 +10,11 @@ In order to simplify the download of FlyBase files, the names have been kept as 
 
 1. Install the library using the pip command.
 
-> pip install FlyBaseDownloads
+    pip install FlyBaseDownloads
 
 2. Import the library into your file.
 
-> import FlyBaseDownloads as FBD
+    import FlyBaseDownloads as FBD
 
 3. Access the different classes of the library described below.
 
@@ -23,7 +23,8 @@ In order to simplify the download of FlyBase files, the names have been kept as 
 ## Synonyms
 
 To download the file, execute the following command.
-> Synonyms = FBD.Synonyms.get()
+
+    Synonyms = FBD.Synonyms.get()
 
 The file reports current symbols and synonyms for the following objects in FlyBase: genes (FBgn), alleles (FBal), balancers (FBba), aberrations (FBab), transgenic constructs (FBtp), insertions (FBti), transcripts (FBtr), and proteins (FBpp).
 
@@ -43,14 +44,15 @@ Columns Description
 
 To facilitate its usage, it is suggested to access the data using the following command.
 
-> Genes = FBD.Genes
+    Genes = FBD.Genes
 
 Then, enter the specific method according to the desired data
 
 #### Genetic interaction table
 
 To download the file, execute the following command.
-> Genetic_interaction_table = Genes.Genetic_interaction_table()
+
+    Genetic_interaction_table = Genes.Genetic_interaction_table()
 
 Columns Description
 
@@ -67,7 +69,8 @@ Columns Description
 #### RNA-Seq RPKM values
 
 To download the file, execute the following command.
-> RNASeq_values = Genes.RNASeq_values()
+
+    RNASeq_values = Genes.RNASeq_values()
 
 Columns Description
 
@@ -89,7 +92,8 @@ Columns Description
 #### RNA-Seq RPKM values matrix
 
 To download the file, execute the following command.
-> RNASeq_values_matrix = Genes.RNASeq_values_matrix()
+
+    RNASeq_values_matrix = Genes.RNASeq_values_matrix()
 
 Columns Description
 
@@ -105,7 +109,8 @@ Columns Description
 #### Single Cell RNA-Seq Gene Expression
 
 To download the file, execute the following command.
-> SingleCellRNASeq_Gene_Expression = Genes.Single_Cell_RNA_Gene_Expression()
+
+    SingleCellRNASeq_Gene_Expression = Genes.Single_Cell_RNA_Gene_Expression()
 
 Columns Description
 
@@ -130,7 +135,8 @@ Columns Description
 #### Physical interaction MITAB file
 
 To download the file, execute the following command.
-> Physical_interaction_MITAB = Genes.Physical_interaction_MITAB()
+
+    Physical_interaction_MITAB = Genes.Physical_interaction_MITAB()
 
 Columns Description
 
@@ -177,76 +183,252 @@ Columns Description
 | 39	| Stoichiometry Interactor A |-|-| Not applicable	|
 | 40	| Stoichiometry Interactor B |-|-| Not applicable| 
 | 41	| Identification Method(s) Participant A	|-|-|	Not applicable| 
-| 42	| Identification Method(s) Participant B |-|-|	Not applicable| #### Functional complementation table
+| 42	| Identification Method(s) Participant B |-|-|	Not applicable| 
+
 
 #### Functional complementation table
 
 To download the file, execute the following command.
-> Functional_complementation = Genes.Functional_complementation()
+
+    Functional_complementation = Genes.Functional_complementation()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+| Dmel gene (symbol)	|Current FlyBase symbol of Dmel gene.|
+| Dmel gene (FBgn)	| Current FlyBase identifier (FBgn#) of Dmel gene in column 1.|
+| Functionally complementing ortholog (symbol)	| Current FlyBase symbol of a non-Dmel ortholog of the Dmel gene in column 1 where this non-Dmel gene has been show to functionally complement the Dmel gene.|
+| Functionally complementing ortholog (FBgn#)	| Current FlyBase identifier (FBgn#) of a non-Dmel ortholog of the Dmel gene in column 1 where this non-Dmel gene has been show to functionally complement the Dmel gene.|
+| Supporting_FBrf	| Current FlyBase identifier (FBrf#) of the publication that provides support for the functional complementation statement (the publication that reported the suppression of a mutant phenotype of the Dmel gene by a transgenic construct/mutant allele of the non-Dmel ortholog).|
 
 #### FBgn to DB Accession IDs
 
 To download the file, execute the following command.
-> FBgn_toDB_Accession_IDs = Genes.FBgn_toDB_Accession_IDs()
+
+    FBgn_toDB_Accession_IDs = Genes.FBgn_toDB_Accession_IDs()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+| gene_symbol	|Current symbol of gene.|
+| organism_abbreviation	| Abbreviation (from the Species Abbreviations list) indicating the species of origin of the gene.|
+|	primary_FBgn#	| Current FlyBase identifier (FBgn#) of gene.|
+nucleotide_accession	| EMBL/GenBank/DDBJ nucleotide accession associated with the gene.|
+| na_based_protein_accession	| EMBL/GenBank/DDBJ protein accession associated with the gene and the nucleotide accession in the preceeding 'nucleotide_accession' column|
+| UniprotKB/Swiss-Prot/TrEMBL_accession	| UniProtKB/SwissProt/TrEMBL protein accession associated with the gene.|
+|EntrezGene_ID	| NCBI Entrez ID associated with the gene.
+|RefSeq_transcripts	| NCBI RefSeq transcript accession associated with the gene.|
+RefSeq_proteins	| NCBI RefSeq protein accession associated with the gene and the transcript accession in the preceeding 'RefSeq_transcripts' column.|
 
 #### FBgn to Annotation ID
 
 To download the file, execute the following command.
-> FBgn_toAnnotation_ID = Genes.FBgn_toAnnotation_ID()
+
+    FBgn_toAnnotation_ID = Genes.FBgn_toAnnotation_ID()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+| gene_symbol	| Current symbol of gene.|
+| organism_abbreviation	| Abbreviation (from the Species Abbreviations list) indicating the species of origin of the gene.|
+| primary_FBgn#	| Current FlyBase identifier (FBgn#) of gene.|
+| secondary_FBgn#(s)	| Secondary FlyBase identifier(s) (FBgn#) associated with the gene (comma separated values).| 
+| annotation_ID	| Current annotation identifier associated with the gene.|
+| secondary_annotation_ID(s)	|Secondary annotation identifier(s) associated with the gene (comma separated values).|
 
 #### FBgn to GLEANR IDs
 
 To download the file, execute the following command.
-> FBgn_toGLEANR_IDs = Genes.FBgn_toGLEANR_IDs()
+
+    FBgn_toGLEANR_IDs = Genes.FBgn_toGLEANR_IDs()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|organism_abbreviation	| Abbreviation (from the Species Abbreviations list) indicating the species of origin of the gene.|
+|gene_symbol	| Current FlyBase gene symbol.|
+|primary_FBgn#	| Current FlyBase identifier (FBgn#) of the gene.|
+|GLEANR_ID	| GLEANR identifier assigned by the AAA Consortium.|
 
 #### FBgn to FBtr to FBpp IDs
 
 To download the file, execute the following command.
-> FBgn_to_FBtr_to_FBpp = Genes.FBgn_to_FBtr_to_FBpp()
+
+    FBgn_to_FBtr_to_FBpp = Genes.FBgn_to_FBtr_to_FBpp()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|FlyBase_FBgn	|Current FlyBase identifier (FBgn#) of the gene.|
+|FlyBase_FBtr	|Current FlyBase identifier (FBtr#) of a transcript encoded by the gene listed in the preceeding 'FlyBase_FBgn' column.|
+|FlyBase_FBpp	|Current FlyBase identifier (FBpp#) of a polypeptide encoded by the transcript listed in the preceeding 'FlyBase_FBtr' column, where this is relevant.|
 
 #### FBgn to FBtr to FBpp IDs (expanded)
 
 To download the file, execute the following command.
-> FBgn_to_FBtr_to_FBpp_exp = Genes.FBgn_to_FBtr_to_FBpp_expanded()
+
+    FBgn_to_FBtr_to_FBpp_exp = Genes.FBgn_to_FBtr_to_FBpp_expanded()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+| organism	|Abbreviation (from the Species Abbreviations list) indicating the species of origin of the gene.|
+|gene_type	|The type of gene, represented by a Sequence Ontology term.|
+|gene_ID	|Current "FBgn" identifier of gene.|
+|gene_symbol	|Current symbol of the gene.|
+|gene_fullname	|Current full name of the gene.|
+|annotation_ID	|Current FlyBase annotation identifier of the gene.|
+|transcript_type	|The type of transcript, represented by a Sequence Ontology term.|
+|transcript_ID	|Current FlyBase annotation identifier of the transcript.|
+|transcript_symbol	|Current symbol of the transcript.|
+|polypeptide_ID	|Current FlyBase annotation identifier of the polypeptide.|
+|polypeptide_symbol	|Current symbol of the polypeptide.|
 
 #### FBgn exons to Affy1 
 
 To download the file, execute the following command.
-> FBgn_exons2affy1 = Genes.FBgn_exons2affy1()
+
+    FBgn_exons2affy1 = Genes.FBgn_exons2affy1()
+
+The file is generated by testing for overlaps, no matter how small, of the locations of Affy1 oligos in the genome with the locations of gene exons, as defined by the Dmel gene models for the current release of FlyBase. If the location of an Affy1 oligo shows any kind of overlap with an exon of a gene, a Gene=>Affy reference is recorded in this file.
+
+The extent of the overlap has no influence on the inclusion of a crossreference in this file. The overlap might be just one nucleotide, or it could be an exact match to the exon. For interpretation of the significance of a partial overlap please contact Affymetrix.
+
+The file includes the following Dmel genes:
+
+ - Nuclear genes located to the sequence
+
+
+it excludes:
+ - genes not located to the sequence
+ - mitochondrial genes
+
+The first column of a line it is the FBgn ID, and the second one is the Affy1 ID that overlaps with an exon of the gene.
 
 #### FBgn exons to Affy2
 
 To download the file, execute the following command.
-> FBgn_exons2affy2 = Genes.FBgn_exons2affy2()
+
+    FBgn_exons2affy2 = Genes.FBgn_exons2affy2()
+
+Similar to the Affy1 but with Affy2.
 
 #### Genes Sequence Ontology (SO) data
 
 To download the file, execute the following command.
-> Genes_Sequence_Ontology = Genes.Genes_Sequence_Ontology()
+
+    Genes_Sequence_Ontology = Genes.Genes_Sequence_Ontology()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|gene_primary_id	|The unique FlyBase gene ID for this gene.|
+|gene_symbol	|The official FlyBase symbol for this gene.|
+|so_term_name	|The SO term name.|
+|so_term_id	|The SO term primary identifier.|
 
 #### Genes map table
 
 To download the file, execute the following command.
-> Genes_map = Genes.Genes_map()
+
+    Genes_map = Genes.Genes_map()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|organism_abbreviation	|Abbreviation (from the Species Abbreviations list) indicating the species of origin of the gene.|
+|current_symbol	|Current FlyBase gene symbol.|
+|primary_FBid	|Current FlyBase identifier (FBgn#) of gene.|
+|recombination_loc	|Recombination map location.|
+|cytogenetic_loc	|Cytogenetic location.|
+|sequence_loc	|Genomic location.|
 
 #### Best gene summaries
 
 To download the file, execute the following command.
-> Best_gene_summaries = Genes.Best_gene_summaries()
+
+    Best_gene_summaries = Genes.Best_gene_summaries()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|FBgn_ID	|Current FlyBase identifier number for the gene.|
+|Gene_Symbol	|Current FlyBase symbol of the gene.|
+|Summary_Source	|The source of the gene summary.|
+|Summary	|The gene summary text.|
+
+### Automated_gene_summaries
+
+To download the file, execute the following command.
+
+`Automated_gene_summaries = Genes.Automated_gene_summaries()`
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|FlyBase ID. | The Valid FlyBase identifier number for the gene.|
+|Summary| The gene summary as a string of plain text.|
 
 #### Gene Snapshots
 
 To download the file, execute the following command.
-> Gene_Snapshots = Genes.Gene_Snapshots()
+
+    Gene_Snapshots = Genes.Gene_Snapshots()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|FBgn_ID	|Current FlyBase identifier number for the gene.|
+|GeneSymbol	|Current FlyBase symbol of the gene.|
+|GeneName	|Current FlyBase name of the gene.|
+|datestamp	|Date on which the information was last reviewed.|
+|gene_snapshot_text	| Gene snapshot information for the gene. Cases that are in progress or are deemed to have insufficient data to summarize are stated as such|
+
 
 #### Unique protein isoforms
 
 To download the file, execute the following command.
-> Unique_protein_isoforms = Genes.Unique_protein_isoforms()
+
+    Unique_protein_isoforms = Genes.Unique_protein_isoforms()
+
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|FBgn	|Current FlyBase identifier (FBgn#) of the gene.|
+|FB_gene_symbol	|Current FlyBase gene symbol of the gene.|
+|representative_protein	|Current FlyBase protein symbol of the representative protein isoform.|
+|identical_protein(s)	|Current FlyBase protein symbol(s) of identical protein isoforms.|
 
 #### Enzyme data
 
 To download the file, execute the following command.
-> Enzyme = Genes.Enzyme()
 
+    Enzyme = Genes.Enzyme()
 
+Columns Description
+
+| Column heading           | Content Description          |
+|----------------------|--------------------|
+|group_id	|FlyBase gene group (FBgg) ID of the relevant terminal group within the ENZYMES (FBgg0001715) hierarchy (only terminal groups contain members).
+|group_name	|FlyBase gene group (FBgg) name of relevant terminal group within the ENZYMES (FBgg0001715) hierarchy (only terminal groups contain members).|
+|group_GO_ID	|The GO molecular function term ID on the given gene group. Multiple entries are separated with a pipe.|
+|group_GO_name	|The GO molecular function term name on the given gene group. Multiple entries are separated with a pipe.|
+|group_EC_number	|The EC number on the given gene group, if present. (This is computed, corresponding to the EC cross-reference on the GO molecular function term.)|
+|group_EC_name	|The EC name on the given gene group, if present. (This is computed, corresponding to the EC cross-reference on the GO molecular function term.)|
+|gene_id	|The current FlyBase gene ID (FBgn) of the gene.|
+|gene_symbol	|The current FlyBase symbol of the gene.|
+|gene_name	|The current FlyBase name of the gene.|
+|gene_EC_number	|The EC number(s) associated with the gene, if present. Multiple entries are separated with a pipe. (This is computed, corresponding to the EC cross-reference(s) on any positive GO molecular function term(s) annotated to the gene.)
+|gene_EC_name	|The EC name(s) associated with the gene, if present. Multiple entries are separated with a pipe. (This is computed, corresponding to the EC cross-reference(s) on any positive GO molecular function term(s) annotated to the gene.)|
