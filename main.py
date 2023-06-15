@@ -13,7 +13,7 @@ import FlyBaseDownloads as FBD
 
 Sinonimos = FBD.Synonyms.get()
 
-GO = FBD.Gene_Ontology_annotation.get()
+GO = FBD.GOAnn.get()
 
 #%%
 
