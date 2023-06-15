@@ -3,8 +3,10 @@
 Python package to facilitate the data download from FlyBase. Most of the available data from their official wiki can be downloaded. One of the purposes of this library is to organize the data as closely as possible to the source, **FlyBase**. Despite not being the official package, it is organized by data class/type and provides direct downloads of the current bulk data files from the FTP site.
 For more information, visit the [official FlyBase wiki](https://wiki.flybase.org/wiki/FlyBase:Downloads_Overview).
 
+- [Usage and Installation](#usageninstallation)
 
-# Bulk data files
+
+# Usage and Installation <a name="usageninstallation"></a>
 
 In order to simplify the download of FlyBase files, the names have been kept as close as possible. To access the data, follow these steps:
 
