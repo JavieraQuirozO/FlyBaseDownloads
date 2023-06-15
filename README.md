@@ -411,6 +411,15 @@ Columns Description
 |representative_protein	|Current FlyBase protein symbol of the representative protein isoform.|
 |identical_protein(s)	|Current FlyBase protein symbol(s) of identical protein isoforms.|
 
+### Non-coding RNAs
+
+To download the file, execute the following command.
+
+    Noncoding_RNAs = Genes.Noncoding_RNAs()
+
+This file reports all ncRNAs with gene models supported by FlyBase in JSON format, as submitted to [RNAcentral](http://rnacentral.org/). Pseudogenes are excluded. In addition to the symbols and IDs for ncRNAs, this file also includes their associated gene, genomic location, sequence, Sequence Ontology classification, etc.
+
+
 #### Enzyme data
 
 To download the file, execute the following command.

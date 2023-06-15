@@ -10,21 +10,21 @@ from setuptools import setup
 
 setup(
     name='FlyBaseDownloads',
-    version='1.0.0',
+    version='1.0.3',
     license='MIT',
     author='Javiera Quiroz Olave',
     url= 'https://github.com/JavieraQuirozO/FlyBaseDownloads',
     author_email='javiera.quiroz@biomedica.udec.cl',
-    long_description_content_type='text/x-rst',
-    long_description= 'The non-official FlyBaseDownload Packege',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    install_requires=open('requirements.txt').readlines(),
     description='Package to download Flybase data in Python, easily and quickly.',
     packages=['FlyBaseDownloads'],
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'Intended Audience :: Healthcare Industry',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.9',
     ],
 )
-

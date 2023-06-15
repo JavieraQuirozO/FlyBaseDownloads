@@ -11,23 +11,37 @@ from FlyBaseDownloads.FBD import FBD
 db = FBD()
 
 #Synonyms
-Synonyms = FBD().Synonyms(db)
+Synonyms = db.Synonyms(db)
 
 #Genes
+Genes = db.Genes(db)
 
-Genes = FBD().Genes(db)
+#GO
+Gene_Ontology_annotation = db.Gene_Ontology_annotation(db)
 
 #Gene_groups
-Gene_groups = FBD.Gene_groups(db)
+Gene_groups = db.Gene_groups(db)
 
 #Alleles_Stocks
-Alleles_Stocks = FBD.Alleles_Stocks(db)
+Alleles_Stocks = db.Alleles_Stocks(db)
 
 #Homologs
-Homologs = FBD.Homologs(db)
+Homologs = db.Homologs(db)
 
 #Human_disease
-Human_disease = FBD.Human_disease(db)
+Human_disease = db.Human_disease(db)
+
+#Ontology
+Ontology_Terms = db.Ontology_Terms(db)
 
 #Organisms
-Organisms = FBD.Organisms(db)
+Organisms = db.Organisms(db)
+
+#Insertions
+Insertions = db.Insertions(db)
+
+#Clones
+Clones = db.Clones(db)
+
+#References
+References = db.References(db)

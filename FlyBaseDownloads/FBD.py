@@ -12,6 +12,8 @@ import gzip
 from ftplib import FTP
 import re
 import csv
+import obonet
+import json
 
 
 
@@ -61,7 +63,7 @@ class FBD():
         
         
         
-        def open_file(self, ruta_archivo, header):
+        def open_file_tsv(self, ruta_archivo, header):
             def df_r(df):
                 if re.search(r"FB\w{9}", df.columns[0]):
                     df_columns = pd.DataFrame(df.columns).T
@@ -105,7 +107,51 @@ class FBD():
                         return df_r(df)
                     except:
                         print('Failed to download the file') 
+                        
+        def open_file_json(self, ruta_archivo):
             
+            a = []
+
+            if re.search(r'gz', ruta_archivo):
+                
+                try: 
+                    with gzip.open('../' + ruta_archivo, 'rt') as archivo:
+                        d = json.load(archivo)
+                        d_ = d['data']
+                        datos = pd.DataFrame(d_)
+                        a.append(datos)
+                       
+                except:
+                    print('Failed to download the file') 
+                
+                return a[0]
+                        
+        def open_obo(self, ruta_archivo):
+            a = []
+            
+            if re.search(r'gz', ruta_archivo):
+                with gzip.open('../' + ruta_archivo, 'rt') as archivo:
+                   if re.search(r'obo', ruta_archivo):
+                       
+                      graph = obonet.read_obo(archivo)
+                      
+                      a.append(graph)
+
+            return a[0]
+        
+        def get(self, header = None):
+            
+            archivos = self.download_file()
+            
+            if len(archivos) > 0:
+                if re.search('.obo', self.url):
+                    return self.open_obo(archivos[0])
+                elif re.search('.json', self.url):
+                    return self.open_file_json(archivos[0])
+                else:
+                    return self.open_file_tsv(archivos[0], header)
+            
+        
                     
     
     class Synonyms():
@@ -124,11 +170,7 @@ class FBD():
             
             descargas = self.db.Downloads(url)
             
-            archivos = []
-            
-            archivos = descargas.download_file()
-            
-            return descargas.open_file(archivos[0], self.header)
+            return descargas.get(self.header)
         
     class Genes():
         
@@ -137,6 +179,7 @@ class FBD():
         
             self.main_url = self.db.main_url
             self.gen_url = 'genes/'
+            self.header = None
             
         def Genetic_interaction_table(self):
             self.un_url = 'gene_genetic_interactions_fb_*.tsv.gz'
@@ -235,7 +278,11 @@ class FBD():
             self.header = 3
             return self.get()
         
-        #FALTA JSON NON-CODING
+        def Noncoding_RNAs(self):
+            self.un_url = 'ncRNA_genes_fb_*.json.gz'
+            return self.get()
+        
+        #FALTA JSON NON-CODI
         
         def Enzyme(self):
             self.un_url = 'Dmel_enzyme_data_fb_*.tsv.gz'
@@ -249,13 +296,40 @@ class FBD():
             url = self.main_url + self.gen_url + self.un_url
             descargas = self.db.Downloads(url)
             
+            return descargas.get(self.header)
+            
+    class Gene_Ontology_annotation():
+        
+        def __init__(self, fbd_instance):
+            self.db = fbd_instance
+        
+            self.main_url = self.db.main_url
+            self.go_url = 'go/gene_association.fb.gz'
+            self.header = 5
+            self.df_columns = ['DB', 'DB_Object_ID', 'DB_Object_Symbol',
+                               'Qualifier', 'GO ID', 'DB:Reference',
+                               'Evidence', 'With (or) From', 'Aspect',
+                               'DB_Object_Name', 'DB_Object_Synonym', 'DB_Object_Type',
+                               'taxon', 'Date', 'Assigned_by']
+            
+        def get(self):
+            
+            url = self.main_url + self.go_url
+            descargas = self.db.Downloads(url)
+            
             archivos = []
             
             archivos = descargas.download_file()
             
             if len(archivos) > 0:
-                return descargas.open_file(archivos[0], self.header)
-        
+                df = descargas.open_file_tsv(archivos[0], self.header)
+                df = df.iloc[:, :-2]
+                df_ = pd.DataFrame(df.columns).T
+                df_.columns = self.df_columns
+                df.columns = self.df_columns
+                return pd.concat([df_, df])
+            
+                
     class Gene_groups():
         
         def __init__(self, fbd_instance):
@@ -269,12 +343,7 @@ class FBD():
             url = self.main_url + self.gen_url + self.un_url
             descargas = self.db.Downloads(url)
             
-            archivos = []
-            
-            archivos = descargas.download_file()
-            
-            if len(archivos) > 0:
-                return descargas.open_file(archivos[0], self.header)
+            return descargas.get(self.header)
             
         def Gene_group(self):
             self.un_url = 'gene_group_data_fb_*.tsv.gz'
@@ -304,12 +373,7 @@ class FBD():
             url = self.main_url + self.gen_url + self.un_url
             descargas = self.db.Downloads(url)
             
-            archivos = []
-            
-            archivos = descargas.download_file()
-            
-            if len(archivos) > 0:
-                return descargas.open_file(archivos[0], self.header)
+            return descargas.get(self.header)
             
         def Stock(self):
             self.gen_url = 'stocks/'
@@ -348,12 +412,7 @@ class FBD():
             url = self.main_url + self.gen_url + self.un_url
             descargas = self.db.Downloads(url)
             
-            archivos = []
-            
-            archivos = descargas.download_file()
-            
-            if len(archivos) > 0:
-                return descargas.open_file(archivos[0], self.header)
+            return descargas.get(self.header)
             
         def Drosophila_Paralogs(self):
             self.un_url = 'dmel_paralogs_fb_*.tsv.gz'
@@ -378,12 +437,7 @@ class FBD():
             url = self.main_url + self.gen_url + self.un_url
             descargas = self.db.Downloads(url)
             
-            archivos = []
-            
-            archivos = descargas.download_file()
-            
-            if len(archivos) > 0:
-                return descargas.open_file(archivos[0], self.header)
+            return descargas.get(self.header)
             
         def Disease_model_annotations(self):
             self.gen_url = 'human_disease/'
@@ -396,7 +450,51 @@ class FBD():
             self.un_url = 'dmel_human_orthologs_disease_fb_*.tsv.gz'
             self.header = 3
             return self.get()
+    
+    class Ontology_Terms():
         
+        def __init__(self, fbd_instance):
+            self.db = fbd_instance
+        
+            self.main_url = self.db.main_url
+            self.go_url = 'ontologies/'
+            self.header = None
+            
+        def get(self):
+            
+            url = self.main_url + self.go_url + self.un_url
+            descargas = self.db.Downloads(url)
+            
+            return descargas.get(self.header)
+            
+        def Fly_anatomy(self):
+            self.un_url = 'fly_anatomy.obo.gz'
+            return self.get()
+        
+        def Fly_development(self):
+            self.un_url = 'fly_development.obo.gz'
+            return self.get()
+        
+        def Flybase_controlled_vocabulary(self):
+            self.un_url = 'flybase_controlled_vocabulary.obo.gz'
+            return self.get()
+        
+        def Flybase_stock_vocabulary(self):
+            self.un_url = 'flybase_stock_vocabulary.obo.gz'
+            return self.get()
+        
+        def GO_ontology(self):
+            self.un_url = 'go-basic.obo.gz'
+            return self.get()
+        
+        def Image_ontology(self):
+            self.un_url = 'image.obo.gz'
+            return self.get()
+        
+        def DO_ontology(self):
+            self.un_url = 'so-simple.obo.gz'
+            return self.get()
+    
     class Organisms():
         
         def __init__(self, fbd_instance):
@@ -413,11 +511,86 @@ class FBD():
             
             descargas = self.db.Downloads(url)
             
-            archivos = []
+            return descargas.get(self.header)
+        
+    class Insertions():
+        
+        def __init__(self, fbd_instance):
+            self.db = fbd_instance
+        
+            self.main_url = self.db.main_url
+            self.in_url = 'insertions/'
+            self.header = 0
             
-            archivos = descargas.download_file()
-            
-            return descargas.open_file(archivos[0], self.header)
-            
+        def GAL4_drivers(self):
+            self.un_url = 'fu_gal4_table_fb_2023_03.json.gz'
+            df = self.get()
+            df = pd.concat([df.drop(['driver'], axis=1), df['driver'].apply(pd.Series)], axis=1)
 
+            # Reemplazar los valores None por NaN
+            df = df.replace({None: pd.NA})
+            
+            # Mostrar el dataframe
+            return (df)
+            
+            
+        
+        def Map_insertions(self):
+            self.un_url = 'insertion_mapping_fb_*.tsv.gz'
+            self.header = 3
+            return self.get()
+            
+        def get(self):
+            url = self.main_url + self.in_url + self.un_url
+            
+            descargas = self.db.Downloads(url)
+            
+            return descargas.get(self.header)
+        
+    class Clones():
+        
+        def __init__(self, fbd_instance):
+            self.db = fbd_instance
+        
+            self.main_url = self.db.main_url
+            self.cl_url = 'clones/'
+            self.header = None
+            
+        def cDNA_clone_data(self):
+            self.un_url = 'cDNA_clone_data_fb_*.tsv.gz'
+            self.header = 3
+            return self.get()
+        
+        def genomic_clone_data(self):
+            self.un_url = 'genomic_clone_data_fb_*.tsv.gz'
+            self.header = 3
+            return self.get()
+        
+        
+        def get(self):    
+            url = self.main_url + self.cl_url + self.un_url
+            
+            descargas = self.db.Downloads(url)
+            
+            return descargas.get(self.header)
+        
+            
+    class References():
+        
+        def __init__(self, fbd_instance):
+            self.db = fbd_instance
+        
+            self.main_url = self.db.main_url
+            self.org_url = 'references/fbrf_pmid_pmcid_doi_fb*.tsv.gz'
+            self.header = 2
+            
+        
+        def FBrf_PMid_PMCid_doi(self):
+            
+            url = self.main_url + self.org_url
+            
+            descargas = self.db.Downloads(url)
+            
+            df = descargas.get(self.header)
+            return df.iloc[1:, :]
         
