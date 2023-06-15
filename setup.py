@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='FlyBaseDownloads',
-    version='1.0.4',
+    version='1.0.4.6',
     license='MIT',
     author='Javiera Quiroz Olave',
     url= 'https://github.com/JavieraQuirozO/FlyBaseDownloads',
@@ -19,7 +19,7 @@ setup(
     long_description_content_type='text/markdown',
     install_requires=open('requirements.txt').readlines(),
     description='Package to download Flybase data in Python, easily and quickly.',
-    packages=['FlyBaseDownloads'],
+    packages=['FlyBaseDownloads', 'FlyBaseDownloads.classes'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',

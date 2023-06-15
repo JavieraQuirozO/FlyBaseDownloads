@@ -6,18 +6,18 @@ Created on Mon Jun 12 12:42:17 2023
 @author: javiera.quiroz
 """
 
-from FlyBaseDownloads.classes.Synonyms import Synonyms
-from FlyBaseDownloads.classes.Genes import Genes
-from FlyBaseDownloads.classes.Gene_Ontology_annotation import Gene_Ontology_annotation
-from FlyBaseDownloads.classes.Gene_groups import Gene_groups
-from FlyBaseDownloads.classes.Homologs import Homologs
-from FlyBaseDownloads.classes.Ontology_Terms import Ontology_Terms
-from FlyBaseDownloads.classes.Organisms import Organisms
-from FlyBaseDownloads.classes.Insertions import Insertions
-from FlyBaseDownloads.classes.Clones import Clones
-from FlyBaseDownloads.classes.References import References
-from FlyBaseDownloads.classes.Alleles_Stocks import Alleles_Stocks
-from FlyBaseDownloads.classes.Human_disease import Human_disease
+from .classes.Synonyms import Synonyms
+from .classes.Genes import Genes
+from .classes.Gene_Ontology_annotation import Gene_Ontology_annotation
+from .classes.Gene_groups import Gene_groups
+from .classes.Homologs import Homologs
+from .classes.Ontology_Terms import Ontology_Terms
+from .classes.Organisms import Organisms
+from .classes.Insertions import Insertions
+from .classes.Clones import Clones
+from .classes.References import References
+from .classes.Alleles_Stocks import Alleles_Stocks
+from .classes.Human_disease import Human_disease
 
 
 
