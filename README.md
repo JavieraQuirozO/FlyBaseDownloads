@@ -4,7 +4,29 @@ Python package to facilitate the data download from FlyBase. Most of the availab
 For more information, visit the [official FlyBase wiki](https://wiki.flybase.org/wiki/FlyBase:Downloads_Overview).
 
 - [Usage and Installation](#usageninstallation)
-
+- [Synonyms](#synonyms)
+- [Genes](#genes)
+    - [Genetic interaction table](#GIT) 
+    - [RNA-Seq RPKM values](#RNAseqV)  
+    - [RNA-Seq RPKM values matrix](#RNAseqM) 
+    - [Single Cell RNA-Seq Gene Expression](#singleCell)
+    - [Physical interaction MITAB file](#MITAB)
+    - [Functional complementation table](#FCT)
+    - [FBgn to DB Accession IDs](#FbgnDB)
+    - [FBgn to Annotation ID](#FbgnAnn")
+    - [FBgn to GLEANR IDs](#FbgnGL)
+    - [FBgn to FBtr to FBpp IDs ](#FbgnFBpp)
+    - [FBgn to FBtr to FBpp IDs (expanded)](#FBgnFBppE)
+    - [FBgn exons to Affy1](#FBgnAf1)
+    - [FBgn exons to Affy2](#FBgnAf2)
+    - [Genes Sequence Ontology (SO) data](#Gogene)
+    - [Genes map table](#genesMap)
+    - [Best gene summaries](#BGS)
+    - [Automated gene summaries](#AGS)
+    - [Gene Snapshots](#GSS)
+    - [Unique protein isoforms](#UPI)
+    - [Non-coding RNAs](#nonCod)
+    - [Enzyme ](#enzyme)
 
 # Usage and Installation <a name="usageninstallation"></a>
 
@@ -22,7 +44,7 @@ In order to simplify the download of FlyBase files, the names have been kept as 
 
 
 
-## Synonyms
+## Synonyms <a name="synonyms"></a>
 
 To download the file, execute the following command.
 
@@ -42,7 +64,7 @@ Columns Description
 | symbol_synonym(s)   | Non-current symbol(s) associated with the object (pipe separated values) |
 
 
-## Genes
+## Genes <a name="genes"></a>
 
 To facilitate its usage, it is suggested to access the data using the following command.
 
@@ -50,7 +72,7 @@ To facilitate its usage, it is suggested to access the data using the following 
 
 Then, enter the specific method according to the desired data
 
-#### Genetic interaction table
+#### Genetic interaction table <a name="GIT"></a>
 
 To download the file, execute the following command.
 
@@ -68,7 +90,7 @@ Columns Description
 |Publication_FBrf | Current FlyBase identifier (FBrf#) of publication from which the data came |
 
 
-#### RNA-Seq RPKM values
+#### RNA-Seq RPKM values <a name="RNAseqV"></a>
 
 To download the file, execute the following command.
 
@@ -91,7 +113,7 @@ Columns Description
 | Total_exon_base_count	| The number of bases in all exons of this gene |
 | Count_used	| Indicates if the RPKM expression value was calculated using only the exonic regions unique to the gene and not overlapping exons of other genes (Unique), or, if the RPKM expression value was calculated based on all exons of the gene regardless of overlap with other genes (Total). RPKM expression values are typically reported for the "Unique" count, except for genes on dicistronic/polycistronic transcripts, in which case the "Total" count is reported |
 
-#### RNA-Seq RPKM values matrix
+#### RNA-Seq RPKM values matrix <a name="RNAseqM"></a>
 
 To download the file, execute the following command.
 
@@ -108,7 +130,7 @@ Columns Description
 | DATASAMPLE_NAME_(DATASET_ID)	| Each subsequent column reports the gene RPKM values for the sample listed in the header. The dataset "FBlc" ID is listed in parentheses, and can be pasted into FlyBase search to access more information on the sample from the "dataset" report.|
 
 
-#### Single Cell RNA-Seq Gene Expression
+#### Single Cell RNA-Seq Gene Expression <a name="singleCell"></a>
 
 To download the file, execute the following command.
 
@@ -134,7 +156,7 @@ Columns Description
 | Mean_Expression	| The average level of expression of the gene across all cells of the cluster in which the gene is detected at all.|
 | Spread	| The proportion of cells in the cluster in which the gene is detected.| 
 
-#### Physical interaction MITAB file
+#### Physical interaction MITAB file <a name="MITAB"></a>
 
 To download the file, execute the following command.
 
@@ -188,7 +210,7 @@ Columns Description
 | 42	| Identification Method(s) Participant B |-|-|	Not applicable| 
 
 
-#### Functional complementation table
+#### Functional complementation table <a name="FCT"></a>
 
 To download the file, execute the following command.
 
@@ -204,7 +226,7 @@ Columns Description
 | Functionally complementing ortholog (FBgn#)	| Current FlyBase identifier (FBgn#) of a non-Dmel ortholog of the Dmel gene in column 1 where this non-Dmel gene has been show to functionally complement the Dmel gene.|
 | Supporting_FBrf	| Current FlyBase identifier (FBrf#) of the publication that provides support for the functional complementation statement (the publication that reported the suppression of a mutant phenotype of the Dmel gene by a transgenic construct/mutant allele of the non-Dmel ortholog).|
 
-#### FBgn to DB Accession IDs
+#### FBgn to DB Accession IDs <a name="FBgnDB"></a>
 
 To download the file, execute the following command.
 
@@ -224,7 +246,7 @@ nucleotide_accession	| EMBL/GenBank/DDBJ nucleotide accession associated with th
 |RefSeq_transcripts	| NCBI RefSeq transcript accession associated with the gene.|
 RefSeq_proteins	| NCBI RefSeq protein accession associated with the gene and the transcript accession in the preceeding 'RefSeq_transcripts' column.|
 
-#### FBgn to Annotation ID
+#### FBgn to Annotation ID <a name="FBgnAnn"></a>
 
 To download the file, execute the following command.
 
@@ -241,7 +263,7 @@ Columns Description
 | annotation_ID	| Current annotation identifier associated with the gene.|
 | secondary_annotation_ID(s)	|Secondary annotation identifier(s) associated with the gene (comma separated values).|
 
-#### FBgn to GLEANR IDs
+#### FBgn to GLEANR IDs <a name="FBgnGL"></a>
 
 To download the file, execute the following command.
 
@@ -256,7 +278,7 @@ Columns Description
 |primary_FBgn#	| Current FlyBase identifier (FBgn#) of the gene.|
 |GLEANR_ID	| GLEANR identifier assigned by the AAA Consortium.|
 
-#### FBgn to FBtr to FBpp IDs
+#### FBgn to FBtr to FBpp IDs <a name="FBgnFBpp"></a>
 
 To download the file, execute the following command.
 
@@ -270,7 +292,7 @@ Columns Description
 |FlyBase_FBtr	|Current FlyBase identifier (FBtr#) of a transcript encoded by the gene listed in the preceeding 'FlyBase_FBgn' column.|
 |FlyBase_FBpp	|Current FlyBase identifier (FBpp#) of a polypeptide encoded by the transcript listed in the preceeding 'FlyBase_FBtr' column, where this is relevant.|
 
-#### FBgn to FBtr to FBpp IDs (expanded)
+#### FBgn to FBtr to FBpp IDs (expanded) <a name="FBgnFBppE"></a>
 
 To download the file, execute the following command.
 
@@ -292,7 +314,7 @@ Columns Description
 |polypeptide_ID	|Current FlyBase annotation identifier of the polypeptide.|
 |polypeptide_symbol	|Current symbol of the polypeptide.|
 
-#### FBgn exons to Affy1 
+#### FBgn exons to Affy1 <a name="FBgnAf1"></a>
 
 To download the file, execute the following command.
 
@@ -313,7 +335,7 @@ it excludes:
 
 The first column of a line it is the FBgn ID, and the second one is the Affy1 ID that overlaps with an exon of the gene.
 
-#### FBgn exons to Affy2
+#### FBgn exons to Affy2 <a name="FBgnAf2"></a>
 
 To download the file, execute the following command.
 
@@ -321,7 +343,7 @@ To download the file, execute the following command.
 
 Similar to the Affy1 but with Affy2.
 
-#### Genes Sequence Ontology (SO) data
+#### Genes Sequence Ontology (SO) data <a name="GOgene"></a>
 
 To download the file, execute the following command.
 
@@ -336,7 +358,7 @@ Columns Description
 |so_term_name	|The SO term name.|
 |so_term_id	|The SO term primary identifier.|
 
-#### Genes map table
+#### Genes map table <a name="genesMap"></a>
 
 To download the file, execute the following command.
 
@@ -353,7 +375,7 @@ Columns Description
 |cytogenetic_loc	|Cytogenetic location.|
 |sequence_loc	|Genomic location.|
 
-#### Best gene summaries
+#### Best gene summaries <a name="BGS"></a>
 
 To download the file, execute the following command.
 
@@ -368,7 +390,7 @@ Columns Description
 |Summary_Source	|The source of the gene summary.|
 |Summary	|The gene summary text.|
 
-### Automated_gene_summaries
+### Automated gene summaries <a name="AGS"></a>
 
 To download the file, execute the following command.
 
@@ -381,7 +403,7 @@ Columns Description
 |FlyBase ID. | The Valid FlyBase identifier number for the gene.|
 |Summary| The gene summary as a string of plain text.|
 
-#### Gene Snapshots
+#### Gene Snapshots <a name="GSS"></a>
 
 To download the file, execute the following command.
 
@@ -398,7 +420,7 @@ Columns Description
 |gene_snapshot_text	| Gene snapshot information for the gene. Cases that are in progress or are deemed to have insufficient data to summarize are stated as such|
 
 
-#### Unique protein isoforms
+#### Unique protein isoforms <a name="UPI"></a>
 
 To download the file, execute the following command.
 
@@ -413,7 +435,7 @@ Columns Description
 |representative_protein	|Current FlyBase protein symbol of the representative protein isoform.|
 |identical_protein(s)	|Current FlyBase protein symbol(s) of identical protein isoforms.|
 
-### Non-coding RNAs
+### Non-coding RNAs <a name="nonCod"></a>
 
 To download the file, execute the following command.
 
@@ -422,7 +444,7 @@ To download the file, execute the following command.
 This file reports all ncRNAs with gene models supported by FlyBase in JSON format, as submitted to [RNAcentral](http://rnacentral.org/). Pseudogenes are excluded. In addition to the symbols and IDs for ncRNAs, this file also includes their associated gene, genomic location, sequence, Sequence Ontology classification, etc.
 
 
-#### Enzyme data
+#### Enzyme data <a name="enzyme"></a>
 
 To download the file, execute the following command.
 
