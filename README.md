@@ -6,7 +6,7 @@ For more information, visit the [official FlyBase wiki](https://wiki.flybase.org
 - [Usage and Installation](#usageninstallation)
 - [Synonyms](#synonyms)
 - [Genes](#genes)
-    - [Genetic interaction table](#GIT) 
+    - [Genetic interaction table](#git) 
     - [RNA-Seq RPKM values](#RNAseqV)  
     - [RNA-Seq RPKM values matrix](#RNAseqM) 
     - [Single Cell RNA-Seq Gene Expression](#singleCell)
@@ -72,7 +72,7 @@ To facilitate its usage, it is suggested to access the data using the following 
 
 Then, enter the specific method according to the desired data
 
-#### Genetic interaction table <a name="GIT"></a>
+#### Genetic interaction table <a name="git"></a>
 
 To download the file, execute the following command.
 
