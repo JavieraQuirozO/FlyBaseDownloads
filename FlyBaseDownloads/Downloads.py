@@ -106,27 +106,43 @@ class Downloads():
                     a.append(datos)
                    
             except:
-                print('Failed to download the file') 
+                try:
+                    with gzip.open('../' + ruta_archivo, 'rt') as archivo:
+                        return json.load(archivo)
+                except:
+                    print('Failed to download the file') 
             
-            return a[0]
+        
+        return a[0]
                     
     def open_obo(self, ruta_archivo):
+    
         a = []
         
-        if re.search(r'gz', ruta_archivo):
-            with gzip.open('../' + ruta_archivo, 'rt') as archivo:
-               if re.search(r'obo', ruta_archivo):
-                   
-                  graph = obonet.read_obo(archivo)
-                  
-                  a.append(graph)
+        try:
+            if re.search(r'gz', ruta_archivo):
+                with gzip.open('../' + ruta_archivo, 'rt') as archivo:
+                   if re.search(r'obo', ruta_archivo):
+                       
+                      graph = obonet.read_obo(archivo)
+                      
+                      a.append(graph)
 
-        return a[0]
+            return a[0]
+        
+        except:
+            print('Failed to download the file') 
+        
     
     def get(self, header = None):
         
-        archivos = self.download_file()
-        patron = r"##?\s\w+"
+        archivos = []
+        
+        try:
+            archivos = self.download_file()
+        except:
+            print('Failed to download the file') 
+        patron = r"##?\s?\w+"
         
         def df_r(df):
             if re.search(r"FB\w{9}", df.columns[0]):
@@ -148,7 +164,8 @@ class Downloads():
                 return self.open_obo(archivos[0])
             elif re.search('.json', self.url):
                 try:
-                    df_r(self.open_file_json(archivos[0]))
+                    return df_r(self.open_file_json(archivos[0]))
+                    
                 except:
                     try:
                         df = self.open_file_json(archivos[0])
@@ -158,7 +175,7 @@ class Downloads():
                         df = df.replace({None: pd.NA})
                         return df_r(df)
                     except:
-                        self.open_file_json(archivos[0])
+                        return self.open_file_json(archivos[0])
                     
             else:
                 return df_r(self.open_file_tsv(archivos[0], header))

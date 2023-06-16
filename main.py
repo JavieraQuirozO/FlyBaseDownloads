@@ -27,7 +27,7 @@ Genes = FBD.Genes
 
 NonRNA = Genes.Noncoding_RNAs()
 
-affy1 = Genes.FBgn_exons2affy1()
+#affy1 = Genes.FBgn_exons2affy1()
 
 #%%
 Organism = FBD.Organisms.Species_list()
