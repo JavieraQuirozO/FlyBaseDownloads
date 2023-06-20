@@ -13,7 +13,7 @@ For more information, visit the [official FlyBase wiki](https://wiki.flybase.org
     - [Physical interaction MITAB file](#mitab)
     - [Functional complementation table](#fct)
     - [FBgn to DB Accession IDs](#fbgn-db)
-    - [FBgn to Annotation ID](#fbgn-ann")
+    - [FBgn to Annotation ID](#fbgn-ann)
     - [FBgn to GLEANR IDs](#fbgn-gl)
     - [FBgn to FBtr to FBpp IDs ](#fbgn-fbpp)
     - [FBgn to FBtr to FBpp IDs (expanded)](#fbgn-fbpp-e)
@@ -47,13 +47,21 @@ For more information, visit the [official FlyBase wiki](https://wiki.flybase.org
  - [Organisms](#orgs)
 	  - [Species list](#species) 
  - [Ontology Terms](#ont-tr)
-	  - [Fly Anatomy](#f-an-on)
+	  - [Fly Anatomy](#f-bt-on)
 	  - [Fly Development](#f-dv-on)
 	  - [Flybase Controlled Vocabulary](#f-cv-on) 
-	  - [Fly Stock Ontology](#f-st-on)
-	  - [Gene Ontology](#f-g-on)
-	  - [Image Ontology](#f-i-on) 
+	  - [Fly Stock Ontology](#f-sv-on)
+	  - [Gene Ontology](#f-go-on)
+	  - [Image Ontology](#f-bi-on) 
 	  - [Human Disease Ontology](#f-do-on)
+ - [Insertions](#insr)
+	  - [Map data for insertions](#mp-insr)
+	  - [Frequently-used GAL4 drivers table](#gal4)
+ - [Clones](#clones)
+	  - [cDNAs: FBcl to acc. ID](#dna-fbcl-acc) 
+	  - [Genomic: FBcl to acc. ID](#gen-fbcl-acc) 	
+ - [References](#ref)
+	  - [FlyBase FBrf to PubMed ID to PMCID to DOI](#ref-get) 
 
 # Usage and Installation <a name="usageninstallation"></a>
 
@@ -747,15 +755,11 @@ This is identical to the file of the same name listed under the 'Orthologs' sect
 
 ## Organisms <a name="orgs"></a>
 
-To facilitate its usage, it is suggested to access the data using the following command.
-
-    Human_disease = FBD.Human_disease
-
 #### Species list <a name="species"></a>
 
 To download the file, execute the following command.
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    Species = FBD.Organisms.Species_list()
 
 Columns Description
 
@@ -772,54 +776,54 @@ Columns Description
 
 To facilitate its usage, it is suggested to access the data using the following command.
 
-    Human_disease = FBD.Human_disease
+    Ontology = FBD.Ontology_Terms
 
-#### Fly anatomy <a name="f-an-on"></a>
+#### Fly anatomy <a name="f-bt-on"></a>
 
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    FBbt = Ontology.FBbt()
 
 #### Fly development <a name="f-dv-on"></a>
 
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    FBdv = Ontology.FBdv()
 
 #### Flybase controlled vocabulary <a name="f-cv-on"></a>
 
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    FBcv = Ontology.FBcv()
 
-#### Stock ontology <a name="f-st-on"></a>
-
-
-    Human_disease_model = Human_disease.Disease_model_annotations()
-
-#### Gene ontology <a name="f-g-on"></a>
+#### Stock ontology <a name="f-sv-on"></a>
 
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    FBsv = Ontology.FBsv()
 
-#### Image ontology <a name="f-i-on"></a>
+#### Gene ontology <a name="f-go-on"></a>
 
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    GO = Ontology.G0()
+
+#### Image ontology <a name="f-bi-on"></a>
+
+
+    FBbi= Ontology.FBbi()
 
 #### Human disease ontology <a name="f-do-on"></a>
 
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    DO = Ontology.DO()
 
-## Insertions <a name="genes"></a>
+## Insertions <a name="insr"></a>
 
 To facilitate its usage, it is suggested to access the data using the following command.
 
-    Human_disease = FBD.Human_disease
+    Insertions = FBD.Insertions
 
-#### Map data for insertions <a name="git"></a>
+#### Map data for insertions <a name="mp-insr"></a>
 
    To download the file, execute the following command.
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    map_Insertions = Insertions.Map_insertions()
 
 Columns Description
 
@@ -834,25 +838,25 @@ genomic_location	|Genomic location of insertion.|
 |observed_cytogenetic_location	|Observed cytogenetic location reported in the literature.|
 
 
-#### Map data for insertions <a name="git"></a>
+#### Map data for insertions <a name="gal4"></a>
 
    To download the file, execute the following command.
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    Gal4 = Insertions.GAL4_drivers()
 
 This file reports a list of all GAL4 drivers that have been curated to at least 21 references and/or are among 150 most frequently requested GAL4 stocks from the [Bloomington Drosophila Stock Center](https://bdsc.indiana.edu/), in JSON format. In addition to the symbols and IDs for Scer\GAL4 alleles, this file also includes their associated transposon or insertion, associated gene, expression pattern in controlled vocabulary stage and anatomy terms, stocks, and publications, all with IDs, as well as free text expression pattern descriptions. This file, except for publications and stocks, is also available in TSV format [here](http://flybase.org/GAL4/freq_used_drivers.tsv).
 
-## Clones <a name="genes"></a>
+## Clones <a name="clones"></a>
 
 To facilitate its usage, it is suggested to access the data using the following command.
 
-    Human_disease = FBD.Human_disease
+    Clones = FBD.Clones
 
-#### cDNAs: FBcl to acc. ID <a name="git"></a>
+#### cDNAs: FBcl to acc. ID <a name="dna-fbcl-acc"></a>
 
    To download the file, execute the following command.
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    c_cDNAs = Clones.cDNA_clone_data()
 
 Columns Description
 
@@ -865,11 +869,11 @@ organism_abbreviation	|Abbreviation (from the Species |Abbreviations list) indic
 |cDNA_accession(s)	|EMBL/GenBank/DDBJ cDNA accession number.|
 |EST_accession(s)	|EMBL/GenBank/DDBJ EST accession number.|
 
-#### Genomic: FBcl to acc. ID <a name="git"></a>
+#### Genomic: FBcl to acc. ID <a name="gen-fbcl-acc"></a>
 
    To download the file, execute the following command.
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    c_genomic = Clones.genomic_clone_data()
 
 Columns Description
 
@@ -880,17 +884,13 @@ Columns Description
 |clone_name	|Clone name.|
 |accession	|EMBL/GenBank/DDBJ cDNA accession number.|
 
-## References <a name="genes"></a>
+## References <a name="ref"></a>
 
-To facilitate its usage, it is suggested to access the data using the following command.
-
-    Human_disease = FBD.Human_disease
-
-#### FlyBase FBrf to PubMed ID to PMCID to DOI <a name="git"></a>
+#### FlyBase FBrf to PubMed ID to PMCID to DOI <a name="ref-get"></a>
 
    To download the file, execute the following command.
 
-    Human_disease_model = Human_disease.Disease_model_annotations()
+    References = FBD.References.FBrf_PMid_PMCid_doi()
 
 Columns Description
 
