@@ -39,7 +39,6 @@ For more information, visit the [official FlyBase wiki](https://wiki.flybase.org
 	  - [Phenotypic](#pheno) 
 	  - [Alleles to Genes](#alltoge)
  - [Homologs](#homs)
-	  - [Drosophila Orthologs](#dort) 
 	  - [Drosophila Paralogs](#paral)  
 	  - [Human Orthologs](#hort-d) 
  - [Human disease](#hudss)
