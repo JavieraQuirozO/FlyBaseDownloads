@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='FlyBaseDownloads',
-    version='1.0.5',
+    version='1.0.6',
     license='MIT',
     author='Javiera Quiroz Olave',
     url= 'https://github.com/JavieraQuirozO/FlyBaseDownloads',

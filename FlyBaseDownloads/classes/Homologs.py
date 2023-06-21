@@ -17,9 +17,9 @@ class Homologs():
     def get(self):
         
         url = self.main_url + self.gen_url + self.un_url
-        descargas = Downloads(url)
+        downloads = Downloads(url)
         
-        return descargas.get(self.header)
+        return downloads.get(self.header)
         
     def Drosophila_Paralogs(self):
         self.un_url = 'dmel_paralogs_fb_*.tsv.gz'

@@ -15,9 +15,9 @@ class Human_disease():
     def get(self):
         
         url = self.main_url + self.gen_url + self.un_url
-        descargas = self.db.Downloads(url)
+        downloads = self.db.Downloads(url)
         
-        return descargas.get(self.header)
+        return downloads.get(self.header)
         
     def Disease_model_annotations(self):
         self.gen_url = 'human_disease/'

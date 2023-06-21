@@ -20,6 +20,6 @@ class Organisms():
         
         url = self.main_url + self.org_url
         
-        descargas = Downloads(url)
+        downloads = Downloads(url)
         
-        return descargas.get(self.header)
+        return downloads.get(self.header)

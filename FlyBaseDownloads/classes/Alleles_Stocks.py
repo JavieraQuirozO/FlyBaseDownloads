@@ -18,9 +18,9 @@ class Alleles_Stocks():
     def get(self):
         
         url = self.main_url + self.gen_url + self.un_url
-        descargas = Downloads(url)
+        downloads = Downloads(url)
         
-        return descargas.get(self.header)
+        return downloads.get(self.header)
         
     def Stock(self):
         self.gen_url = 'stocks/'

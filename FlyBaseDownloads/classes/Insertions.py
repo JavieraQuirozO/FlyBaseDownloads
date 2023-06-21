@@ -32,6 +32,6 @@ class Insertions():
     def get(self):
         url = self.main_url + self.in_url + self.un_url
         
-        descargas = Downloads(url)
+        downloads = Downloads(url)
         
-        return descargas.get(self.header)
+        return downloads.get(self.header)

@@ -20,7 +20,10 @@ class Gene_groups():
         url = self.main_url + self.gen_url + self.un_url
         descargas = Downloads(url)
         
-        return descargas.get(self.header)
+        df = descargas.get(self.header)
+        
+        df.columns = df.iloc[0]
+        return df[1:].reset_index(drop=True)
         
     def Gene_group(self):
         self.un_url = 'gene_group_data_fb_*.tsv.gz'

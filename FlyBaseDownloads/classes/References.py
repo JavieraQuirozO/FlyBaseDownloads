@@ -21,7 +21,7 @@ class References():
         
         url = self.main_url + self.org_url
         
-        descargas = Downloads(url)
+        downloads = Downloads(url)
         
-        df = descargas.get(self.header)
+        df = downloads.get(self.header)
         return df.iloc[1:, :]

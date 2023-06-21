@@ -13,13 +13,7 @@ import FlyBaseDownloads as FBD
 
 Sinonimos = FBD.Synonyms.get()
 
-GO = FBD.GOAnn.get()
-
-#%%
-
-Ontology = FBD.Ontology_Terms
-
-graph = Ontology.DO_ontology()
+GAF = FBD.GOAnn.GAF()
 
 #%%
 
@@ -27,20 +21,53 @@ Genes = FBD.Genes
 
 NonRNA = Genes.Noncoding_RNAs()
 
-#affy1 = Genes.FBgn_exons2affy1()
+affy1 = Genes.FBgn_exons2affy1()
 
 #%%
-Organism = FBD.Organisms.Species_list()
+Gene_groups = FBD.Gene_groups
+Gene_groups_data = Gene_groups.Gene_group() 
+Gene_groups_data
+Gene_groups_HGNC= Gene_groups.Gene_groups_HGNC() 
+Gene_groups_HGNC
+Pathway_group = Gene_groups.Pathway_group() 
+Pathway_group
+
+
+#%%
+
+Organisms = FBD.Organisms
+Species = Organisms.Species_list()
+
+#%%
+
+Ontology = FBD.Ontology_Terms
+
+#%%
+FBbt = Ontology.FBbt()
+FBdv= Ontology.FBdv()
+FBcv= Ontology.FBcv()
+FBsv= Ontology.FBsv()
+GO = Ontology.GO()
+FBbi = Ontology.FBbi()
+DO = Ontology.DO()
 
 #%%
 Insertions = FBD.Insertions
 
+map_Insertions = Insertions.Map_insertions()
+
 Gal4 = Insertions.GAL4_drivers()
-#%%
-map_in = Insertions.Map_insertions()
+
 
 #%%
-Clones = FBD.Clones.genomic_clone_data()
+Clones = FBD.Clones
+
+c_cDNAs = Clones.cDNA_clone_data()
+c_genomic = Clones.genomic_clone_data()
 
 #%%
 References = FBD.References.FBrf_PMid_PMCid_doi()
+
+
+
+

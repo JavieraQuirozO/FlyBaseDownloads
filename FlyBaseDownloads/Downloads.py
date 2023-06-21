@@ -3,7 +3,7 @@
 """
 Created on Thu Jun 15 17:04:19 2023
 
-@author: usuario
+@author: javiera.quiroz
 """
 
 
@@ -30,29 +30,28 @@ class Downloads():
         
         ftp = FTP(url.split('/')[2])
         ftp.login()
-        ruta_directorio = '/'.join(url.split('/')[3:-1])
-
-
-        ftp.cwd(ruta_directorio)
-
-        archivos_remotos = ftp.nlst()
-
-        archivos_filtrados = list(fnmatch.filter(archivos_remotos, url.split('/')[-1]))
-
-        archivos = []
-        for archivo in archivos_filtrados:
-            ruta_archivo = '../' + archivo
-            if not os.path.exists(archivo):
-                with open(ruta_archivo, 'wb') as archivo_local:
-                    ftp.retrbinary('RETR ' + archivo, archivo_local.write)
-    
-                    archivos.append(archivo)
+        directory_path = '/'.join(url.split('/')[3:-1])
+        
+        ftp.cwd(directory_path)
+        
+        remote_files = ftp.nlst()
+        
+        filtered_files = list(fnmatch.filter(remote_files, url.split('/')[-1]))
+        
+        files = []
+        for file in filtered_files:
+            file_path = '../' + file
+            if not os.path.exists(file):
+                with open(file_path, 'wb') as local_file:
+                    ftp.retrbinary('RETR ' + file, local_file.write)
+        
+                files.append(file)
             else:
-                archivos.append(archivo)
-
+                files.append(file)
+        
         ftp.quit()
-        if len(archivos) > 0:
-            return archivos
+        if len(files) > 0:
+            return files
         else:
             print('Failed to download the file')
             return []
@@ -60,30 +59,28 @@ class Downloads():
     
     
     
-    def open_file_tsv(self, ruta_archivo, header):
+    def open_file_tsv(self, file_path, header):
         a = []
 
-        if re.search(r'gz', ruta_archivo):
+        if re.search(r'gz', file_path):
             
             try: 
-                with gzip.open('../' + ruta_archivo, 'rt') as archivo:
-                   df = pd.read_csv(archivo, sep='\t', header=header)
+                with gzip.open('../' + file_path, 'rt') as file:
+                   df = pd.read_csv(file, sep='\t', header=header)
                    a.append(df)
                 return (a[0])
             
             except: 
                 try:
-                    with gzip.open('../' + ruta_archivo, 'rt') as archivo:
-                        df = csv.reader(archivo, delimiter='\t')
+                    with gzip.open('../' + file_path, 'rt') as file:
+                        df = csv.reader(file, delimiter='\t')
                         a.append(pd.DataFrame(df))
                 
                     df = a[0]
                     columns = df.iloc[header, :].tolist()
         
-                    # Elimina la fila del encabezado del DataFrame
                     df = df.iloc[header + 1:, :]
                     
-                    # Asigna los nuevos nombres de columna al DataFrame
                     df.columns = columns
                     df = df.dropna(axis='columns')
                   
@@ -92,39 +89,39 @@ class Downloads():
                 except:
                     print('Failed to download the file') 
                     
-    def open_file_json(self, ruta_archivo):
+    def open_file_json(self, file_path):
         
         a = []
 
-        if re.search(r'gz', ruta_archivo):
+        if re.search(r'gz', file_path):
             
             try: 
-                with gzip.open('../' + ruta_archivo, 'rt') as archivo:
-                    d = json.load(archivo)
+                with gzip.open('../' + file_path, 'rt') as file:
+                    d = json.load(file)
                     d_ = d['data']
-                    datos = pd.DataFrame(d_)
-                    a.append(datos)
+                    data = pd.DataFrame(d_)
+                    a.append(data)
                    
             except:
                 try:
-                    with gzip.open('../' + ruta_archivo, 'rt') as archivo:
-                        return json.load(archivo)
+                    with gzip.open('../' + file_path, 'rt') as file:
+                        return json.load(file)
                 except:
                     print('Failed to download the file') 
             
         
         return a[0]
                     
-    def open_obo(self, ruta_archivo):
+    def open_obo(self, file_path):
     
         a = []
         
         try:
-            if re.search(r'gz', ruta_archivo):
-                with gzip.open('../' + ruta_archivo, 'rt') as archivo:
-                   if re.search(r'obo', ruta_archivo):
+            if re.search(r'gz', file_path):
+                with gzip.open('../' + file_path, 'rt') as file:
+                   if re.search(r'obo', file_path):
                        
-                      graph = obonet.read_obo(archivo)
+                      graph = obonet.read_obo(file)
                       
                       a.append(graph)
 
@@ -132,14 +129,35 @@ class Downloads():
         
         except:
             print('Failed to download the file') 
+            
+    def open_fb(self, file_path,start_line, columns):
+        a = []
+
+        if re.search(r'gz', file_path):
+            
+            try:
+                with gzip.open('../' + file_path, 'rt') as file:
+                    df = csv.reader(file, delimiter='\t')
+                    a.append(pd.DataFrame(df))
+            
+                df = a[0]
+                
+                df = df.iloc[start_line:, :-2]
+                df.columns = columns
+              
+
+                return (df)
+                            
+            except:
+                    print('Failed to download the file') 
         
     
     def get(self, header = None):
         
-        archivos = []
+        files = []
         
         try:
-            archivos = self.download_file()
+            files = self.download_file()
         except:
             print('Failed to download the file') 
         patron = r"##?\s?\w+"
@@ -150,7 +168,7 @@ class Downloads():
 
                 df.columns = range(len(df.columns))
                 
-                # Unir la fila de columnas con el resto del DataFrame
+               
                 df = pd.concat([df_columns, df], ignore_index=True, axis = 0)
             
             if re.search(patron, df.iloc[-1,0]):
@@ -159,25 +177,24 @@ class Downloads():
             return df
         
         
-        if len(archivos) > 0:
+        if len(files) > 0:
             if re.search('.obo', self.url):
-                return self.open_obo(archivos[0])
+                return self.open_obo(files[0])
             elif re.search('.json', self.url):
                 try:
-                    return df_r(self.open_file_json(archivos[0]))
+                    return df_r(self.open_file_json(files[0]))
                     
                 except:
                     try:
-                        df = self.open_file_json(archivos[0])
+                        df = self.open_file_json(files[0])
                         df = pd.concat([df.drop(['driver'], axis=1), df['driver'].apply(pd.Series)], axis=1)
 
-                        # Reemplazar los valores None por NaN
                         df = df.replace({None: pd.NA})
                         return df_r(df)
                     except:
-                        return self.open_file_json(archivos[0])
+                        return self.open_file_json(files[0])
                     
             else:
-                return df_r(self.open_file_tsv(archivos[0], header))
+                return df_r(self.open_file_tsv(files[0], header))
         
     

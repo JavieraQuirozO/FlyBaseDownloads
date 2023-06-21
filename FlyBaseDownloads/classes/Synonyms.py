@@ -21,6 +21,6 @@ class Synonyms():
         
         url = self.main_url + self.syn_url
         
-        descargas = Downloads(url)
+        downloads = Downloads(url)
         
-        return descargas.get(self.header)
+        return downloads.get(self.header)

@@ -20,34 +20,34 @@ class Ontology_Terms():
     def get(self):
         
         url = self.main_url + self.go_url + self.un_url
-        descargas = Downloads(url)
+        downloads = Downloads(url)
         
-        return descargas.get(self.header)
+        return downloads.get(self.header)
         
-    def Fly_anatomy(self):
+    def FBbt(self):
         self.un_url = 'fly_anatomy.obo.gz'
         return self.get()
     
-    def Fly_development(self):
+    def FBdv(self):
         self.un_url = 'fly_development.obo.gz'
         return self.get()
     
-    def Flybase_controlled_vocabulary(self):
+    def FBcv(self):
         self.un_url = 'flybase_controlled_vocabulary.obo.gz'
         return self.get()
     
-    def Flybase_stock_vocabulary(self):
+    def FBsv(self):
         self.un_url = 'flybase_stock_vocabulary.obo.gz'
         return self.get()
     
-    def GO_ontology(self):
+    def GO(self):
         self.un_url = 'go-basic.obo.gz'
         return self.get()
     
-    def Image_ontology(self):
+    def FBbi(self):
         self.un_url = 'image.obo.gz'
         return self.get()
     
-    def DO_ontology(self):
+    def DO(self):
         self.un_url = 'so-simple.obo.gz'
         return self.get()

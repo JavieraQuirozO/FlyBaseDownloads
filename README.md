@@ -1,3 +1,4 @@
+
 # FlyBaseDownloads
 
 Python package to facilitate the data download from FlyBase. Most of the available data from their official wiki can be downloaded. One of the purposes of this library is to organize the data as closely as possible to the source, **FlyBase**. Despite not being the official package, it is organized by data class/type and provides direct downloads of the current bulk data files from the FTP site.
@@ -7,7 +8,7 @@ For more information, visit the [official FlyBase wiki](https://wiki.flybase.org
 - [Synonyms](#synonyms)
 - [Genes](#genes)
     - [Genetic interaction table](#git) 
-    - [RNA-Seq RPKM values](#rnaseq-v)  
+    - [RNA-Seq RPKM values](#rnaseq-v)
     - [RNA-Seq RPKM values matrix](#rnaseq-m) 
     - [Single Cell RNA-Seq Gene Expression](#single-cell)
     - [Physical interaction MITAB file](#mitab)
@@ -31,15 +32,15 @@ For more information, visit the [official FlyBase wiki](https://wiki.flybase.org
 	  - [Gene Association File - GAF](#gaf) 
  - [Gene Groups](#gene-groups)
 	  - [Gene group data](#ggd) 
-	  - [Gene groups with HGNC IDs](#hgnc)  
-	  - [Pathway group](#pathway)  
+	  - [Gene groups with HGNC IDs](#hgnc) 
+	  - [Pathway group](#pathway) 
  - [Alleles and Stocks](#aands)
 	  - [Stock](#stock)
 	  - [Genetic interactions](#genint)
 	  - [Phenotypic](#pheno) 
 	  - [Alleles to Genes](#alltoge)
  - [Homologs](#homs)
-	  - [Drosophila Paralogs](#paral)  
+	  - [Drosophila Paralogs](#paral)
 	  - [Human Orthologs](#hort-d) 
  - [Human disease](#hudss)
 	  - [Human disease model](#hdm) 
@@ -59,7 +60,7 @@ For more information, visit the [official FlyBase wiki](https://wiki.flybase.org
 	  - [Frequently-used GAL4 drivers table](#gal4)
  - [Clones](#clones)
 	  - [cDNAs: FBcl to acc. ID](#dna-fbcl-acc) 
-	  - [Genomic: FBcl to acc. ID](#gen-fbcl-acc) 	
+	  - [Genomic: FBcl to acc. ID](#gen-fbcl-acc) 
  - [References](#ref)
 	  - [FlyBase FBrf to PubMed ID to PMCID to DOI](#ref-get) 
 
@@ -206,15 +207,15 @@ Columns Description
 | 3 | Alt ID(s) Interactor A               | database:identifier            | flybase:CG2671\| entrez gene/locuslink:33156 | The alternative gene identifiers currently provided are Flybase annotation IDs (CG#) and NCBI’s Entrez Gene ID separated by “\|“                           |
 | 4 | Alt ID(s) Interactor B               | -                              | -                  |                        -                          |
 | 5 | Alias(es) Interactor A               | database:name(alias type)      | flybase:l(2)gl(gene name) | The official Flybase gene symbol. It is referred to as “gene name” to adhere to the psi-mi ontology. |                           |
-| 6 | Alias(es) Interactor B               | -                              | ”-                  |                    -      |                       
+| 6 | Alias(es) Interactor B               | -                              | -                  |                    -      | 
 | 7 | Interaction Detection Method(s)      | ontology:identifier(method name) | psi-mi:"MI:0006"(anti bait coimmunoprecipitation) | The assay used to detect the interaction, taken from the psi-mi ontology. |                           |
 | 8 | Publication 1st Author(s)            | surname initial(s) (publication year) | Betschinger K. (2003) | The first author and year of the publication where the interaction is described. |                           |
 | 9 | Publication ID(s)                    | database:identifier            | flybase:FBrf0157155\|pubmed:12629552 | The unique FlyBase identifier for the publication followed by the unique PubMed identifier (if there is one) separated by “\|”. |                           |
 | 10| Taxid Interactor A                   | taxid:identifier               | taxid:7227("Drosophila melanogaster") | The NCBI taxonomy identifier for the source organism of the interactor. The vast majority of interactors in FlyBase come from D. melanogaster. There are, however, a few interspecies interactions consisting of a D. melanogaster interactor and an interactor of a different species. |                           |
-| 11| Taxid Interactor B                   | -                              | -                  |           -                |                           
+| 11| Taxid Interactor B                   | -                              | -                  |           -                | 
 | 12| Interaction Type(s)                  | ontology:identifier(interaction type) | psi-mi:"MI:0915"(physical association) | Taken from the psi-mi ontology. Most often “physical association” for FlyBase. |                           |
-| 13| Source Database(s)                   | ontology:identifier(database name) | psi-mi:"MI:0478"(flybase) | All interactions are curated by FlyBase. |                           
-| 14| Interaction Identifier(s)            | database:identifier            | flybase:FBrf0157155-13.coIP.WB | The unique FlyBase identifier for this interaction. |                                             
+| 13| Source Database(s)                   | ontology:identifier(database name) | psi-mi:"MI:0478"(flybase) | All interactions are curated by FlyBase. | 
+| 14| Interaction Identifier(s)            | database:identifier            | flybase:FBrf0157155-13.coIP.WB | The unique FlyBase identifier for this interaction. | 
 | 15	| Confidence Value(s) |	-|-|		Not applicable	
 | 16	| Expansion Method(s) |-|-| Not applicable
 | 17	| Biological Role(s)  Interactor A	| -|-|		Not applicable	
@@ -222,12 +223,12 @@ Columns Description
 | 19	| Experimental Role(s) Interactor A	| ontology:identifier(experimental role name) |	psi-mi:"MI:0496"(bait)	| The role played by the interactor in the experiment. Taken from the psi-mi ontology.	|
 | 20	| Experimental Role(s) Interactor B | -|-|	-|	
 | 21	| Type(s) Interactor A |	ontology:identifier(interactor type name)	| psi-mi:"MI:0326"(protein)	| The molecule type. For FlyBase, these are limited to protein or ribonucleic acid. Taken from the psi-mi ontology.	|
-| 22	| Type(s) Interactor B	| -|-|-|		
+| 22	| Type(s) Interactor B	| -|-|-| 
 | 23	| Xref(s) Interactor A	|-|-|	Not applicable	
 | 24	| Xref(s) Interactor B	|	-|-|	Not applicable	
 | 25	| Interaction Xref(s) |	database:identifier	| flybase:FBig0000000103	| Cross references for the interactions. For Flybase, these include an interaction group identifier (FBig) and possibly a collection identifier (FBlc) separated by “\|”. All experiments that show an interaction between the products of gene A and gene B are compiled into an A-B interaction group, such that all interactions are associated with an interaction group identified by an FBig number. Interactions identified as part of a large scale study are also associated with the collection identifier, or FBlc number.	|
 | 26	| Annotation(s) Interactor A |	topic:text	isoform-| comment:a isoform	| Information on whether the interaction is specific to a particular interactor isoform.	
-| 27	| Annotation(s) Interactor B |	- | - | -| 	
+| 27	| Annotation(s) Interactor B |	- | - | -|
 | 28	| Interaction Annotation(s) |	topic:text	| comment:Phosphorylated isoforms of @l(2)gl@ are absent when @aPKC@ is knocked down by RNAi.	| Describes the source(s) of the interaction participants and includes free text comments about the interaction.	|
 | 29	| Host Organism(s)	|	- | - | Not applicable	|
 | 30	| Interaction Parameters  | - | -	|	Not applicable	|
@@ -489,7 +490,7 @@ Columns Description
 
 | Column heading           | Content Description          |
 |----------------------|--------------------|
-|group_id	|FlyBase gene group (FBgg) ID of the relevant terminal group within the ENZYMES (FBgg0001715) hierarchy (only terminal groups contain members).
+|group_id	|FlyBase gene group (FBgg) ID of the relevant terminal group within the ENZYMES (FBgg0001715) hierarchy (only terminal groups contain members).|
 |group_name	|FlyBase gene group (FBgg) name of relevant terminal group within the ENZYMES (FBgg0001715) hierarchy (only terminal groups contain members).|
 |group_GO_ID	|The GO molecular function term ID on the given gene group. Multiple entries are separated with a pipe.|
 |group_GO_name	|The GO molecular function term name on the given gene group. Multiple entries are separated with a pipe.|
@@ -498,7 +499,7 @@ Columns Description
 |gene_id	|The current FlyBase gene ID (FBgn) of the gene.|
 |gene_symbol	|The current FlyBase symbol of the gene.|
 |gene_name	|The current FlyBase name of the gene.|
-|gene_EC_number	|The EC number(s) associated with the gene, if present. Multiple entries are separated with a pipe. (This is computed, corresponding to the EC cross-reference(s) on any positive GO molecular function term(s) annotated to the gene.)
+|gene_EC_number	|The EC number(s) associated with the gene, if present. Multiple entries are separated with a pipe. (This is computed, corresponding to the EC cross-reference(s) on any positive GO molecular function term(s) annotated to the gene.)|
 |gene_EC_name	|The EC name(s) associated with the gene, if present. Multiple entries are separated with a pipe. (This is computed, corresponding to the EC cross-reference(s) on any positive GO molecular function term(s) annotated to the gene.)|
 
 ## Gene Ontology annotation files <a name="go-file"></a>
@@ -838,7 +839,7 @@ genomic_location	|Genomic location of insertion.|
 |observed_cytogenetic_location	|Observed cytogenetic location reported in the literature.|
 
 
-#### Map data for insertions <a name="gal4"></a>
+#### Frequently-used GAL4 drivers <a name="gal4"></a>
 
    To download the file, execute the following command.
 
