@@ -908,4 +908,4 @@ Columns Description
 ## Autor: 
 Javiera Quiroz, [email](javiera.quiroz@biomedica.udec.cl).
 
-This library has been developed with the support of Agencia Nacional de Investigación e Innovación (ANNI)
+This library has been developed with the support of Agencia Nacional de Investigación e Innovación (ANII)
